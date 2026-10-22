@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 const navLinks = [
-    { label: 'About', href: 'about' },
-    { label: 'Experience', href: 'experience' },
-    { label: 'Projects', href: 'projects' },
-    { label: 'Skills', href: 'skills' },
-    { label: 'Achievements', href: 'achievements' },
-    { label: 'Contact', href: 'contact' },
+    { label: 'Tentang', href: 'about' },
+    { label: 'Pendidikan & Exp', href: 'experience' },
+    { label: 'Proyek & HKI', href: 'projects' },
+    { label: 'Keahlian', href: 'skills' },
+    { label: 'Prestasi', href: 'achievements' },
+    { label: 'Kontak', href: 'contact' },
 ];
 
 export default function Navbar({ darkMode, setDarkMode }) {
@@ -16,10 +16,10 @@ export default function Navbar({ darkMode, setDarkMode }) {
 
     useEffect(() => {
         const onScroll = () => {
-            setScrolled(window.scrollY > 12);
+            setScrolled(window.scrollY > 20);
             for (let i = navLinks.length - 1; i >= 0; i--) {
                 const el = document.getElementById(navLinks[i].href);
-                if (el && window.scrollY >= el.offsetTop - 100) {
+                if (el && window.scrollY >= el.offsetTop - 140) {
                     setActive(navLinks[i].href);
                     break;
                 }
@@ -35,100 +35,125 @@ export default function Navbar({ darkMode, setDarkMode }) {
     };
 
     return (
-        <header className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
-            scrolled ? 'nav-blur shadow-sm' : 'bg-transparent'
-        }`}>
-            <div className="max-w-6xl mx-auto px-5 lg:px-8">
-                <div className="flex items-center justify-between h-14">
-                    {/* Logo */}
+        <header className="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 pt-3 pointer-events-none">
+            <div className={`max-w-6xl mx-auto pointer-events-auto transition-all duration-300 rounded-2xl ${
+                scrolled
+                    ? 'nav-float py-2 px-4 sm:px-6'
+                    : 'bg-white/60 dark:bg-black/30 backdrop-blur-md border border-slate-200/50 dark:border-white/10 py-2.5 px-4 sm:px-6 shadow-sm'
+            }`}>
+                <div className="flex items-center justify-between">
+                    {/* Brand / Logo */}
                     <button
                         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                        className="flex items-center gap-2 group"
+                        className="flex items-center gap-2.5 group text-left"
                     >
-                        <div className="w-7 h-7 rounded-lg bg-black dark:bg-white flex items-center justify-center">
-                            <span className="text-white dark:text-black text-xs font-bold">D</span>
+                        <div className="relative w-8 h-8 rounded-xl bg-gradient-to-tr from-violet-600 via-indigo-600 to-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-md group-hover:scale-105 transition-transform">
+                            <span>D</span>
+                            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-white dark:border-slate-900"></span>
                         </div>
-                        <span className="text-sm font-semibold text-gray-900 dark:text-white">Daffa Akhadi</span>
+                        <div className="flex flex-col">
+                            <span className="text-sm font-bold text-slate-900 dark:text-white tracking-tight leading-tight group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+                                Daffa Akhadi
+                            </span>
+                            <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium leading-none">
+                                Software Eng & Creative
+                            </span>
+                        </div>
                     </button>
 
-                    {/* Desktop nav */}
-                    <nav className="hidden md:flex items-center gap-0.5">
-                        {navLinks.map(l => (
-                            <button
-                                key={l.href}
-                                onClick={() => scrollTo(l.href)}
-                                className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-150 ${
-                                    active === l.href
-                                        ? 'bg-black/8 dark:bg-white/10 text-gray-900 dark:text-white'
-                                        : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'
-                                }`}
-                            >
-                                {l.label}
-                            </button>
-                        ))}
+                    {/* Desktop Navigation */}
+                    <nav className="hidden lg:flex items-center gap-1 bg-slate-100/70 dark:bg-white/[0.05] p-1 rounded-full border border-slate-200/60 dark:border-white/[0.08]">
+                        {navLinks.map((l) => {
+                            const isActive = active === l.href;
+                            return (
+                                <button
+                                    key={l.href}
+                                    onClick={() => scrollTo(l.href)}
+                                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                                        isActive
+                                            ? 'bg-white dark:bg-violet-600 text-slate-900 dark:text-white shadow-sm scale-[1.02]'
+                                            : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/10'
+                                    }`}
+                                >
+                                    {l.label}
+                                </button>
+                            );
+                        })}
                     </nav>
 
-                    {/* Right */}
+                    {/* Right utilities */}
                     <div className="flex items-center gap-2">
-                        {/* Dark toggle */}
+                        {/* Theme Toggle Button */}
                         <button
                             onClick={() => setDarkMode(!darkMode)}
-                            className="w-8 h-8 rounded-xl flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-black/6 dark:hover:bg-white/8 transition-colors"
-                            aria-label="Toggle dark mode"
+                            className="relative p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-white/10 border border-slate-200/80 dark:border-white/10 transition-colors"
+                            aria-label="Toggle theme mode"
+                            title={darkMode ? 'Beralih ke Mode Terang' : 'Beralih ke Mode Gelap'}
                         >
                             {darkMode ? (
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <svg className="w-4 h-4 text-amber-300 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
                                 </svg>
                             ) : (
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <svg className="w-4 h-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
                                 </svg>
                             )}
                         </button>
 
-                        {/* Hire Me pill */}
+                        {/* CTA Button */}
                         <button
                             onClick={() => scrollTo('contact')}
-                            className="btn-pill btn-dark hidden md:inline-flex"
+                            className="hidden sm:inline-flex btn-pill btn-dark text-xs py-2 px-4"
                         >
-                            Hire Me
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                            Hubungi Saya
                         </button>
 
-                        {/* Mobile hamburger */}
+                        {/* Mobile Toggle */}
                         <button
                             onClick={() => setMobileOpen(!mobileOpen)}
-                            className="md:hidden w-8 h-8 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-black/6 dark:hover:bg-white/8 transition-colors"
+                            className="lg:hidden p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-white/10 border border-slate-200/80 dark:border-white/10 transition-colors"
+                            aria-label="Menu"
                         >
-                            <div className="w-4 flex flex-col gap-1">
-                                <span className={`block h-0.5 bg-current rounded transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-                                <span className={`block h-0.5 bg-current rounded transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`}></span>
-                                <span className={`block h-0.5 bg-current rounded transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-                            </div>
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                {mobileOpen ? (
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                ) : (
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                )}
+                            </svg>
                         </button>
                     </div>
                 </div>
-            </div>
 
-            {/* Mobile dropdown */}
-            <div className={`md:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? 'max-h-96' : 'max-h-0'}`}>
-                <div className="nav-blur border-t border-black/5 dark:border-white/5 px-5 py-3">
-                    {navLinks.map(l => (
+                {/* Mobile Dropdown */}
+                {mobileOpen && (
+                    <div className="lg:hidden mt-3 pt-3 border-t border-slate-200/70 dark:border-white/10 space-y-1">
+                        {navLinks.map((l) => (
+                            <button
+                                key={l.href}
+                                onClick={() => scrollTo(l.href)}
+                                className={`w-full text-left px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors flex items-center justify-between ${
+                                    active === l.href
+                                        ? 'bg-violet-600 text-white'
+                                        : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5'
+                                }`}
+                            >
+                                <span>{l.label}</span>
+                                <svg className="w-3.5 h-3.5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        ))}
                         <button
-                            key={l.href}
-                            onClick={() => scrollTo(l.href)}
-                            className="block w-full text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                            onClick={() => scrollTo('contact')}
+                            className="w-full mt-2 btn-pill btn-gradient text-xs py-2.5 justify-center"
                         >
-                            {l.label}
+                            Hubungi Saya
                         </button>
-                    ))}
-                    <button
-                        onClick={() => scrollTo('contact')}
-                        className="btn-pill btn-dark w-full justify-center mt-3"
-                    >
-                        Hire Me
-                    </button>
-                </div>
+                    </div>
+                )}
             </div>
         </header>
     );

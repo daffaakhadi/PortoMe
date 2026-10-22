@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Daffa Akhadi - Software Engineering Student, UI/UX Enthusiast, Content Creator & Video Editor">
-        <title>Daffa Akhadi — Portfolio</title>
+        <meta name="description" content="Portfolio Daffa Akhadi Yoga Perdana - Software Engineering, Backend Development, UI/UX Design, and Creative Media">
+        <title>Daffa Akhadi Yoga Perdana — Portfolio</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
         @vite(['resources/css/app.css', 'resources/js/app.jsx'])
     </head>
-    <body>
+    <body class="antialiased selection:bg-violet-500 selection:text-white">
         <div id="app"></div>
     </body>
 </html>

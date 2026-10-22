@@ -1,132 +1,156 @@
 import React from 'react';
 
-const achievements = [
+const awards = [
     {
-        icon: '🎓',
-        title: 'Student Ambassador',
-        issuer: 'Faculty of Applied Sciences — Telkom University',
-        year: '2023 — Present',
-        type: 'Organization',
-        desc: 'Dipercaya sebagai wajah dan representasi fakultas dalam kegiatan promosi, penerimaan mahasiswa baru, serta berbagai event internal dan eksternal.',
-        current: true,
+        title: 'Juara Pertama Lomba Video TikTok Nasional',
+        issuer: 'Ikatan Alumni Resimen Mahasiswa Indonesia (IARMI)',
+        year: '2024',
+        rank: '1st Place',
+        badge: 'Tingkat Nasional',
+        icon: '🏆',
+        color: 'from-amber-500 to-yellow-600',
+        desc: 'Meraih Juara 1 Nasional dalam kompetisi video pendek TikTok bertema "Melangkah Bersama IARMI Untuk Mencapai Indonesia Maju" melalui penyusunan visual storytelling, pacing editing dinamis, dan narasi inspiratif kebangsaan.',
     },
     {
-        icon: '🎬',
-        title: 'Digistar Club Contributor',
-        issuer: 'Digistar Club — Chapter Telkom University',
-        year: '2023 — Present',
-        type: 'Organization',
-        desc: 'Aktif berkontribusi sebagai Video Editor dalam komunitas teknologi Digistar Club, memproduksi konten visual untuk berbagai kegiatan dan kampanye komunitas.',
-        current: true,
-    },
-    {
-        icon: '🖥️',
-        title: 'UI/UX Designer — C-Learn',
-        issuer: 'Chevalier Laboratory SAS',
+        title: 'Juara 3 Photo Competition Hari Korupsi Sedunia (Hakordia)',
+        issuer: 'Open Library Universitas Telkom',
         year: '2023',
-        type: 'Project',
-        desc: 'Merancang antarmuka dan pengalaman pengguna untuk platform e-learning C-Learn, mulai dari user research hingga prototype interaktif.',
-        current: false,
+        rank: '3rd Place',
+        badge: 'Universitas',
+        icon: '🥉',
+        color: 'from-orange-500 to-amber-700',
+        desc: 'Meraih peringkat ketiga dalam kompetisi fotografi peringatan Hari Antikorupsi Sedunia (Hakordia) dengan membawakan pesan visual integritas dan transparansi generasi muda.',
     },
     {
-        icon: '📜',
-        title: 'Various Academic & Technology Certifications',
-        issuer: 'Dicoding, Google, dan platform lainnya',
-        year: '2022 — Present',
-        type: 'Certification',
-        desc: 'Menyelesaikan berbagai sertifikasi di bidang Android Development, UI/UX Design, Web Development, dan Artificial Intelligence dari platform pembelajaran terkemuka.',
-        current: false,
+        title: 'Top 10 News Article Competition',
+        issuer: 'Ambivers Foundation',
+        year: '2024 - 2026',
+        rank: 'Top 10',
+        badge: 'Kompetisi Nasional',
+        icon: '📰',
+        color: 'from-blue-500 to-indigo-600',
+        desc: 'Masuk dalam 10 besar penulis artikel berita nasional yang diselenggarakan Ambivers Foundation, menunjukkan kemampuan riset, jurnalisme data, dan penyampaian opini bernas.',
+    },
+    {
+        title: 'Kompetisi Mahasiswa Nasional Kompasiana & Prudential',
+        issuer: 'Kompasiana & PT Prudential Life Assurance',
+        year: '2026',
+        rank: 'National Finalist',
+        badge: 'Literasi Keuangan',
+        icon: '💡',
+        color: 'from-rose-500 to-pink-600',
+        desc: 'Kompetisi edukasi finansial nasional bertajuk "PRUteksi Finansial, Bahagia Kemudian" yang bertujuan meningkatkan literasi keuangan mahasiswa, perencanaan jangka panjang, dan proteksi masa depan.',
+    },
+    {
+        title: 'Direction Makers - Storyteller Youth Economic Summit (YES 2026)',
+        issuer: 'CORE Indonesia & Suara.com',
+        year: '2026',
+        rank: 'Speaker / Storyteller',
+        badge: 'Transformasi Ekonomi',
+        icon: '🎤',
+        color: 'from-emerald-500 to-teal-600',
+        desc: 'Terpilih sebagai Direction Makers - Storyteller pada forum Youth Economic Summit 2026 mengangkat peran Gen Z dan Milenial sebagai penggerak transformasi ekonomi nasional yang inklusif dan berkelanjutan.',
+    },
+    {
+        title: 'Media Creative DigiHack 2025 "AI for Social Impact"',
+        issuer: 'Digistar Club by Telkom Indonesia',
+        year: '2025',
+        rank: 'Committee Lead',
+        badge: 'Hackathon 20+ Univ',
+        icon: '🤖',
+        color: 'from-violet-500 to-purple-700',
+        desc: 'Memimpin divisi media kreatif pada kompetisi hackathon nasional DigiHack 2025 yang diikuti 20+ perguruan tinggi di Indonesia dengan fokus pemanfaatan kecerdasan buatan untuk dampak sosial masyarakat.',
     },
 ];
 
-const typeColor = {
-    Organization: 'bg-violet-50 dark:bg-violet-900/20 text-violet-700 dark:text-violet-300 border-violet-200/50 dark:border-violet-800/40',
-    Project: 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-blue-200/50 dark:border-blue-800/40',
-    Certification: 'bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 border-amber-200/50 dark:border-amber-800/40',
-};
-
 export default function Achievements() {
     return (
-        <section id="achievements" className="py-28">
+        <section id="achievements" className="py-24 relative overflow-hidden">
             <div className="max-w-6xl mx-auto px-5 lg:px-8">
 
-                {/* Header */}
-                <div className="fade-up mb-14">
-                    <p className="section-label mb-3">
-                        <span className="w-4 h-px bg-gray-400 inline-block"></span>
-                        Achievements
+                {/* Section Header */}
+                <div className="fade-up mb-14 text-left">
+                    <p className="section-label mb-2">
+                        <span className="w-5 h-0.5 bg-violet-500 rounded-full inline-block"></span>
+                        Penghargaan & Pengakuan
                     </p>
-                    <h2 className="text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
-                        Certifications & Awards
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        Prestasi, Juara Lomba & Forum Nasional
                     </h2>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 max-w-xl">
+                        Apresiasi dan rekognisi atas karya kreatif, literasi, kompetisi video nasional, dan kepemimpinan ide.
+                    </p>
                 </div>
 
-                {/* Cards grid */}
-                <div className="grid sm:grid-cols-2 gap-4 mb-5">
-                    {achievements.map((item, i) => (
+                {/* Awards Grid */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {awards.map((item, idx) => (
                         <div
-                            key={i}
-                            className="fade-up card p-6 group"
-                            style={{ transitionDelay: `${i * 0.08}s` }}
+                            key={item.title}
+                            className="fade-up card-float p-6 flex flex-col justify-between group"
+                            style={{ transitionDelay: `${idx * 0.06}s` }}
                         >
-                            <div className="flex items-start gap-4">
-                                {/* Icon */}
-                                <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0"
-                                    style={{ background: 'rgba(0,0,0,0.05)' }}>
-                                    {item.icon}
-                                </div>
-
-                                <div className="flex-1 min-w-0">
-                                    {/* Title row */}
-                                    <div className="flex flex-wrap items-start gap-2 mb-1">
-                                        <h3 className="text-sm font-semibold text-gray-900 dark:text-white leading-snug group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
-                                            {item.title}
-                                        </h3>
-                                        {item.current && (
-                                            <span className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 font-medium border border-emerald-200/50 dark:border-emerald-800/50 flex-shrink-0">
-                                                <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse"></span>
-                                                Active
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    {/* Meta */}
-                                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{item.issuer}</p>
-                                    <div className="flex items-center gap-2 mb-3">
-                                        <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${typeColor[item.type] || typeColor.Certification}`}>
-                                            {item.type}
+                            <div>
+                                <div className="flex items-center justify-between gap-2 mb-4">
+                                    <div className="flex items-center gap-2.5">
+                                        <span className="text-3xl p-2 rounded-2xl bg-slate-100 dark:bg-white/[0.06] inline-block">
+                                            {item.icon}
                                         </span>
-                                        <span className="text-xs text-gray-400 dark:text-gray-500">{item.year}</span>
+                                        <div>
+                                            <span className="text-xs font-black text-violet-600 dark:text-violet-400 block uppercase tracking-wider">
+                                                {item.rank}
+                                            </span>
+                                            <span className="text-[10px] text-slate-400 font-mono">
+                                                {item.year}
+                                            </span>
+                                        </div>
                                     </div>
-
-                                    {/* Description */}
-                                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                                        {item.desc}
-                                    </p>
+                                    <span className="text-[10px] font-bold uppercase px-2.5 py-1 rounded-full bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300">
+                                        {item.badge}
+                                    </span>
                                 </div>
+
+                                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1.5 leading-snug group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+                                    {item.title}
+                                </h3>
+
+                                <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-3">
+                                    {item.issuer}
+                                </p>
+
+                                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    {item.desc}
+                                </p>
+                            </div>
+
+                            <div className="mt-5 pt-3 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500">
+                                <span>Verifikasi Berkas Resmi CV</span>
+                                <span className="font-semibold text-emerald-600 dark:text-emerald-400">✓ Verified</span>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                {/* LinkedIn CTA */}
-                <div className="fade-up card p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div>
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">Lihat semua sertifikasi</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                            Daftar lengkap tersedia di profil LinkedIn
+                {/* LinkedIn verification banner */}
+                <div className="fade-up mt-12 card-float p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="text-left">
+                        <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                            Ingin melihat rincian sertifikat dan lisensi profesional?
+                        </h4>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                            Semua lisensi dan sertifikat penghargaan tercatat lengkap di profil resmi LinkedIn.
                         </p>
                     </div>
                     <a
-                        href="https://linkedin.com/in/daffaakhadi"
+                        href="http://linkedin.com/in/daffa-akhadi-yoga-perdana"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-pill btn-dark flex-shrink-0"
+                        className="btn-pill btn-dark text-xs py-2.5 px-5 flex-shrink-0"
                     >
-                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        <span>Lihat LinkedIn Profil</span>
+                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                         </svg>
-                        View on LinkedIn
                     </a>
                 </div>
 

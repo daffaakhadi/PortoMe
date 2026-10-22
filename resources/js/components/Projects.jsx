@@ -1,181 +1,213 @@
 import React, { useState } from 'react';
 
-const cats = ['All', 'Android Development', 'Web Development', 'UI/UX Design', 'REST API', 'Academic'];
+const categories = [
+    { id: 'all', label: 'Semua Portofolio' },
+    { id: 'web', label: 'Web & Backend' },
+    { id: 'hki', label: 'HKI & Jurnal Riset' },
+    { id: 'design', label: 'UI/UX & Desain' },
+    { id: 'media', label: 'Video & Kampanye Kreatif' },
+];
 
-const projects = [
+const projectList = [
     {
-        title: 'Egg Ordering Application',
-        cats: ['Android Development', 'REST API', 'Academic'],
-        desc: 'Aplikasi Android pemesanan telur menggunakan Jetpack Compose, Room Database, dan integrasi REST API. Menampilkan katalog produk, keranjang belanja, dan riwayat pesanan.',
-        gradient: 'from-amber-400/80 to-orange-500/80',
-        tech: ['Kotlin', 'Jetpack Compose', 'Room DB', 'REST API'],
-        github: '#',
-        demo: null,
+        title: 'Website Learning Management System (LMS) IdSpora Academy',
+        year: '2025',
+        category: 'web',
+        tag: 'Web & Backend',
+        badge: 'Startup Flagship',
+        desc: 'Platform pembelajaran digital terintegrasi yang dikembangkan untuk IdSpora Academy (Ko+Lab Creative Hub). Bertindak sebagai Backend Developer merancang REST API, sistem otentikasi peran, manajemen kelas interaktif, dan basis data pembelajaran.',
+        tech: ['Laravel', 'PHP', 'REST API', 'MySQL', 'Tailwind CSS'],
+        gradient: 'from-violet-600 to-indigo-700',
         featured: true,
+        stats: 'Digunakan oleh 100+ Peserta',
     },
     {
-        title: 'Laundry Go',
-        cats: ['Web Development', 'Academic'],
-        desc: 'Website manajemen laundry berbasis Laravel dengan fitur pencatatan order, tracking status laundry, manajemen pelanggan, dan laporan keuangan.',
-        gradient: 'from-blue-400/80 to-indigo-500/80',
-        tech: ['Laravel', 'MySQL', 'Tailwind CSS', 'PHP'],
-        github: '#',
-        demo: '#',
+        title: 'HKI: Presensi Digital Berbasis Face Recognition SMKN 2 Garut',
+        year: '2025',
+        category: 'hki',
+        tag: 'Hak Kekayaan Intelektual',
+        badge: 'Pengabdian Masyarakat',
+        desc: 'Karya terdaftar Hak Kekayaan Intelektual (HKI) hasil program Pengabdian Masyarakat untuk SMKN 2 Garut. Mengimplementasikan teknologi pengenalan wajah cerdas untuk otomatisasi absensi siswa dan staf secara presisi dan nirsentuh.',
+        tech: ['Computer Vision', 'Face Recognition', 'Python', 'Web App', 'HKI Resmi'],
+        gradient: 'from-blue-600 to-cyan-600',
         featured: true,
+        stats: 'Sertifikat HKI Resmi Kemenkumham',
     },
     {
-        title: 'Educational AR Application',
-        cats: ['Android Development', 'Academic'],
-        desc: 'Aplikasi pembelajaran bangun ruang berbasis Augmented Reality untuk siswa SD/SMP. Menampilkan objek 3D interaktif dengan informasi edukatif melalui kamera smartphone.',
-        gradient: 'from-violet-400/80 to-purple-600/80',
-        tech: ['Unity', 'AR Foundation', 'Vuforia', 'C#'],
-        github: '#',
-        demo: null,
+        title: 'Jurnal JSIT 2025: Gim 2D Desktop Anak PAUD & TK Sadewa Yogyakarta',
+        year: '2025',
+        category: 'hki',
+        tag: 'Publikasi Ilmiah',
+        badge: 'Jurnal Sains Informatika Terapan',
+        desc: 'Publikasi ilmiah pada Jurnal Sains Informatika Terapan (JSIT) tahun 2025 berjudul "Digitalisasi Aplikasi Gim 2D Berbasis Desktop Bagi Anak PAUD Dan TK Di TK Sadewa Yogyakarta" yang mengkombinasikan pedagogi anak usia dini dengan rekayasa perangkat lunak.',
+        tech: ['2D Game Engine', 'Desktop App', 'Educational UI', 'Academic Research'],
+        gradient: 'from-emerald-600 to-teal-700',
         featured: true,
+        stats: 'Diterbitkan di JSIT 2025',
     },
     {
-        title: 'Animal Data Management System',
-        cats: ['Android Development', 'REST API', 'Academic'],
-        desc: 'Aplikasi Android untuk manajemen data hewan dengan integrasi API eksternal dan sistem autentikasi pengguna berbasis token JWT.',
-        gradient: 'from-emerald-400/80 to-teal-500/80',
-        tech: ['Kotlin', 'Retrofit', 'JWT Auth', 'MVVM'],
-        github: '#',
-        demo: null,
+        title: 'HKI: Sistem Informasi Manajemen Sekolah & Perkembangan Anak',
+        year: '2025',
+        category: 'hki',
+        tag: 'Hak Kekayaan Intelektual',
+        badge: 'Sistem Informasi',
+        desc: 'Karya Cipta HKI terdaftar berjudul "Sistem Informasi Manajemen Sekolah Berbasis Teknologi dan Perkembangan Anak", menyediakan solusi digital untuk monitoring komprehensif data akademik dan psikososial peserta didik.',
+        tech: ['Database Architecture', 'Management System', 'Analytics', 'HKI Kemenkumham'],
+        gradient: 'from-purple-600 to-pink-600',
         featured: false,
+        stats: 'HKI Terdaftar 2025',
     },
     {
-        title: 'C-Learn Platform UI/UX',
-        cats: ['UI/UX Design'],
-        desc: 'Desain UI/UX lengkap untuk platform e-learning C-Learn milik Chevalier Laboratory. Meliputi user research, wireframe, prototype interaktif, dan design system.',
-        gradient: 'from-pink-400/80 to-rose-500/80',
-        tech: ['Figma', 'User Research', 'Design System', 'Prototyping'],
-        github: null,
-        demo: '#',
+        title: 'Media Creative DigiHack 2025: "AI for Social Impact"',
+        year: '2025',
+        category: 'media',
+        tag: 'Hackathon Nasional',
+        badge: 'Digistar Telkom Indonesia',
+        desc: 'Kampanye media kreatif dan kepanitiaan komunikasi pada kompetisi hackathon nasional DigiHack 2025 yang diselenggarakan Digistar Club by Telkom Indonesia, mengangkat tema AI for Social Impact dan diikuti oleh 20+ Universitas Nasional.',
+        tech: ['Creative Direction', 'Hackathon Branding', 'Motion Graphics', 'Social Media Campaign'],
+        gradient: 'from-rose-600 to-orange-600',
         featured: false,
+        stats: '20+ Universitas Nasional',
     },
     {
-        title: 'Faculty Branding Assets',
-        cats: ['UI/UX Design'],
-        desc: 'Pembuatan aset visual dan branding untuk Fakultas Ilmu Terapan Telkom University, termasuk template konten media sosial, poster, dan banner digital.',
-        gradient: 'from-cyan-400/80 to-sky-500/80',
-        tech: ['Figma', 'Adobe Premiere', 'Canva', 'Motion Graphics'],
-        github: null,
-        demo: '#',
+        title: 'Platform UI/UX C-Learn (Chevalier Laboratory SAS)',
+        year: '2025',
+        category: 'design',
+        tag: 'UI/UX Design',
+        badge: 'NPS 50% Achieved',
+        desc: 'Perancangan antarmuka dan pengalaman pengguna platform e-learning C-Learn melalui riset komprehensif kebutuhan pengguna. Berhasil meraih skor Net Promoter Score (NPS) sebesar 50% setelah serangkaian usability test.',
+        tech: ['Figma', 'User Research', 'Design System', 'Prototyping', 'NPS Usability'],
+        gradient: 'from-fuchsia-600 to-pink-700',
         featured: false,
+        stats: '50% Net Promoter Score',
+    },
+    {
+        title: 'Produksi Video Promosi Komersial PACC x HurryUp Brand',
+        year: '2026',
+        category: 'media',
+        tag: 'Video Production',
+        badge: 'Commercial Campaign',
+        desc: 'Produksi dan penyuntingan video promosi terarah untuk kolaborasi antara ritel gadget PT Pabrik ACC Sukses dengan brand HurryUp, dipublikasikan pada kanal media sosial dan display toko ritel di DIY & Jateng.',
+        tech: ['Adobe Premiere Pro', 'Sound Design', 'Color Grading', 'Commercial Storytelling'],
+        gradient: 'from-amber-600 to-rose-600',
+        featured: false,
+        stats: 'Retail Stores in DIY & Jateng',
+    },
+    {
+        title: 'Digistar Connect Goes to ITB: Digital Campaign & Branding',
+        year: '2026',
+        category: 'media',
+        tag: 'Event Campaign',
+        badge: '90% Attendance Rate',
+        desc: 'Strategi promosi multi-channel (feeds, reels instagram, dan blast komunikasi komunitas) untuk acara "Your Roadmap to Building Your Professional Profile and Kickstarting Your Career", menjaring 100+ peserta dengan kehadiran fisik 90%.',
+        tech: ['Campaign Strategy', 'Instagram Reels', 'Copywriting', 'Public Engagement'],
+        gradient: 'from-sky-600 to-indigo-700',
+        featured: false,
+        stats: '100+ Peserta · 90% Hadir',
     },
 ];
 
-const catShort = {
-    'Android Development': 'Android',
-    'Web Development': 'Web',
-    'UI/UX Design': 'Design',
-    'REST API': 'API',
-    'Academic': 'Academic',
-    'All': 'All',
-};
-
 export default function Projects() {
-    const [cat, setCat] = useState('All');
+    const [selectedCat, setSelectedCat] = useState('all');
 
-    const filtered = cat === 'All'
-        ? projects
-        : projects.filter(p => p.cats.includes(cat));
+    const filtered = selectedCat === 'all'
+        ? projectList
+        : projectList.filter(p => p.category === selectedCat);
 
     return (
-        <section id="projects" className="py-28">
+        <section id="projects" className="py-24 relative overflow-hidden">
             <div className="max-w-6xl mx-auto px-5 lg:px-8">
 
-                {/* Header */}
-                <div className="fade-up mb-10">
-                    <p className="section-label mb-3">
-                        <span className="w-4 h-px bg-gray-400 inline-block"></span>
-                        Projects
+                {/* Section Header */}
+                <div className="fade-up mb-12 text-left">
+                    <p className="section-label mb-2">
+                        <span className="w-5 h-0.5 bg-violet-500 rounded-full inline-block"></span>
+                        Karya & Riset Terpilih
                     </p>
-                    <h2 className="text-4xl font-bold text-gray-900 dark:text-white tracking-tight">Featured Projects</h2>
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                        <div>
+                            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                                Proyek, HKI Resmi & Publikasi Ilmiah
+                            </h2>
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 max-w-xl">
+                                Kumpulan hasil karya rekayasa software, hak cipta terdaftar Kemenkumham, publikasi jurnal, serta kampanye kreatif berskala nasional.
+                            </p>
+                        </div>
+
+                        {/* Category filter pills */}
+                        <div className="flex flex-wrap gap-1.5 p-1 rounded-2xl bg-slate-200/60 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 self-start md:self-auto">
+                            {categories.map((c) => (
+                                <button
+                                    key={c.id}
+                                    onClick={() => setSelectedCat(c.id)}
+                                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                                        selectedCat === c.id
+                                            ? 'bg-white dark:bg-violet-600 text-slate-900 dark:text-white shadow-sm scale-[1.02]'
+                                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                                    }`}
+                                >
+                                    {c.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
-                {/* Filter pills */}
-                <div className="fade-up flex flex-wrap gap-2 mb-10">
-                    {cats.map(c => (
-                        <button
-                            key={c}
-                            onClick={() => setCat(c)}
-                            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-                                cat === c
-                                    ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-sm'
-                                    : 'card text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                            }`}
-                        >
-                            {catShort[c]}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Grid */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {filtered.map((p, i) => (
+                {/* Projects Grid */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filtered.map((p, idx) => (
                         <div
                             key={p.title}
-                            className="fade-up card overflow-hidden group flex flex-col"
-                            style={{ transitionDelay: `${i * 0.07}s` }}
+                            className="fade-up card-float overflow-hidden flex flex-col justify-between group"
+                            style={{ transitionDelay: `${idx * 0.05}s` }}
                         >
-                            {/* Thumbnail */}
-                            <div className={`relative h-44 bg-gradient-to-br ${p.gradient} overflow-hidden flex-shrink-0`}>
-                                {p.featured && (
-                                    <span className="absolute top-3 left-3 z-10 text-xs font-semibold px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm text-white border border-white/20">
-                                        ✦ Featured
-                                    </span>
-                                )}
+                            {/* Card Top Banner / Visual Header */}
+                            <div>
+                                <div className={`relative h-44 bg-gradient-to-tr ${p.gradient} p-5 flex flex-col justify-between overflow-hidden`}>
+                                    {/* Subtle pattern & ambient glow */}
+                                    <div className="absolute inset-0 bg-black/20 mix-blend-overlay"></div>
+                                    <div className="absolute -bottom-10 -right-10 w-36 h-36 rounded-full bg-white/15 blur-lg"></div>
 
-                                {/* Category chips */}
-                                <div className="absolute top-3 right-3 z-10 flex flex-wrap gap-1 justify-end">
-                                    <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-sm text-white">
-                                        {p.cats[0]}
-                                    </span>
+                                    {/* Header tags */}
+                                    <div className="relative z-10 flex items-center justify-between gap-2">
+                                        <span className="text-[11px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md text-white border border-white/20">
+                                            {p.badge}
+                                        </span>
+                                        <span className="text-xs font-mono font-bold text-white/90 bg-white/15 backdrop-blur-md px-2 py-0.5 rounded-md">
+                                            {p.year}
+                                        </span>
+                                    </div>
+
+                                    {/* Bottom banner text / watermark */}
+                                    <div className="relative z-10">
+                                        <span className="text-[10px] font-bold uppercase tracking-widest text-white/80">
+                                            {p.tag}
+                                        </span>
+                                        <p className="text-xs text-white/95 font-semibold flex items-center gap-1.5 mt-0.5">
+                                            <span>★</span> {p.stats}
+                                        </p>
+                                    </div>
                                 </div>
 
-                                {/* Big letter watermark */}
-                                <span className="absolute bottom-2 right-4 text-7xl font-black text-white/12 select-none leading-none">
-                                    {p.title[0]}
-                                </span>
-
-                                {/* Decorative circles */}
-                                <div className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-white/10"></div>
-
-                                {/* Hover overlay */}
-                                <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-250 flex items-center justify-center gap-3">
-                                    {p.github && (
-                                        <a href={p.github} target="_blank" rel="noopener noreferrer"
-                                            onClick={e => e.stopPropagation()}
-                                            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/35 transition-colors">
-                                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                            </svg>
-                                        </a>
-                                    )}
-                                    {p.demo && (
-                                        <a href={p.demo} target="_blank" rel="noopener noreferrer"
-                                            onClick={e => e.stopPropagation()}
-                                            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/35 transition-colors">
-                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                            </svg>
-                                        </a>
-                                    )}
+                                {/* Body */}
+                                <div className="p-6">
+                                    <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2.5 leading-snug group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+                                        {p.title}
+                                    </h3>
+                                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-4">
+                                        {p.desc}
+                                    </p>
                                 </div>
                             </div>
 
-                            {/* Body */}
-                            <div className="p-5 flex flex-col flex-1">
-                                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
-                                    {p.title}
-                                </h3>
-                                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1 mb-4">
-                                    {p.desc}
-                                </p>
-                                <div className="flex flex-wrap gap-1.5">
-                                    {p.tech.map(t => (
-                                        <span key={t} className="text-xs px-2.5 py-1 rounded-full card font-medium text-gray-600 dark:text-gray-400">
+                            {/* Tech Stack Footer */}
+                            <div className="px-6 pb-6 pt-2">
+                                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-200/60 dark:border-white/10">
+                                    {p.tech.map((t) => (
+                                        <span
+                                            key={t}
+                                            className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300"
+                                        >
                                             {t}
                                         </span>
                                     ))}
@@ -185,14 +217,31 @@ export default function Projects() {
                     ))}
                 </div>
 
-                {/* GitHub CTA */}
-                <div className="fade-up flex justify-center mt-10">
-                    <a href="https://github.com/daffaakhadi" target="_blank" rel="noopener noreferrer"
-                        className="btn-pill btn-outline">
-                        <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                {/* Bottom Callout / GitHub Link */}
+                <div className="fade-up mt-12 card-float p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-3.5 text-left">
+                        <div className="w-10 h-10 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 flex items-center justify-center font-bold text-lg flex-shrink-0">
+                            GH
+                        </div>
+                        <div>
+                            <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                                Ingin melihat repositori dan dokumentasi teknis?
+                            </h4>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                Jelajahi repositori kode sumber dan kontribusi saya di GitHub.
+                            </p>
+                        </div>
+                    </div>
+                    <a
+                        href="https://github.com/daffaakhadi"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-pill btn-dark text-xs py-2.5 px-5 flex-shrink-0"
+                    >
+                        <span>Kunjungi github.com/daffaakhadi</span>
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
-                        View All Projects on GitHub
                     </a>
                 </div>
 
